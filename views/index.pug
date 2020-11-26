@@ -4,16 +4,19 @@ block content
     h1(style='text-align: center;')
       span(style='color: #333399;') TROVE.
     p(style='text-align: center;')
-      span(style='color: #333399;') Create an Account:
-    p(style='text-align: center;')
-      label(for='user') Create Username:
-      textarea#user(cols='20 name=', rows='1')   Username  
-    p(style='text-align: center;')
-      label(for='pass') Create Password:
-      textarea#user(cols='20 name=', rows='1')   Password  
-    p(style='text-align: center;')
-      button(type='button') Create Account
-    p(style='text-align: center;') Already have an account?
+      span(style='color: #333399;') Login:
+    form(method='POST' action='' style='text-align: center;')
+        div.form-group
+          label(for='username') Username:
+          input#username.form-control(type='text', placeholder='Username' name='username' value=(undefined===userinfo ? '' : userinfo.username))
+          br
+          br
+          label(for='password') Password:
+          input#password.form-control(type='text', placeholder='Password' name='password' value=(undefined===userinfo ? '' : userinfo.password))
+        br  
+        button.btn.btn-primary(type='submit') Submit
+    a(style='text-align: center;', href='/catalog/register') Don't have an account?
     p(style='text-align: center;') Try Logging-in
     // Insert Hyperlink to main log-in page
+    
 
