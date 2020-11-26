@@ -1,0 +1,6 @@
+h1 User List Page
+ul
+each element,index in user_list
+    form(method='POST' action='' style='text-align: center;')
+        li=element
+        button.btn.btn-primary(type='submit' value=element.username name="action") Follow user with username #{element.username}  
