@@ -1,9 +1,9 @@
 const { body,validationResult } = require("express-validator");
 var UserInfo = require('../models/userinfo');
 
-exports.index = function(req, res) {
-     res.render('index', { title: 'Trove Login Page'});
-};
+//exports.index = function(req, res) {
+//     res.render('index', { title: 'Trove Login Page'});
+//};
 
 // Display UserInfo form on GET.
 exports.userinfo = function(req, res) {
@@ -36,14 +36,14 @@ exports.userinfo_create_post =  [
       return;
     }
     else {
-       //Create a genre object with escaped and trimmed data.
+       //Create a new user object with escaped and trimmed data.
     var userinfo = new UserInfo(
       { username: req.body.username,
         password: req.body.password}
     );
       userinfo.save(function (err) {
                if (err) { return next(err); }
-               // Genre saved. Redirect to genre detail page.
+               // state that the user has been sucessfully created
                //res.redirect(genre.url);
                  res.send("Successfully added");
              });  
