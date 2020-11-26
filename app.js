@@ -1,13 +1,17 @@
 var createError = require('http-errors');
 var express = require('express');
+const bodyParser = require("body-parser");
+const fs = require('fs');
 var path = require('path');
+const multer = require('multer');
+const helpers = require('./helpers');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
-
+var session = require('express-session');
 var app = express();
 
 //Set up mongoose connection
@@ -25,7 +29,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret:"jfgiogjsiodgj3432",resave:false, saveUninitialized:true}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -46,5 +59,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
